@@ -10,7 +10,7 @@ Author URI: http://wvfitzgerald.com
 Text Domain: internetbs
 Domain Path: /languages
 */
-
+require_once 'internetBS-settings.php';
 /*---------Our admin settings page---------*/
 
 
@@ -226,6 +226,7 @@ $obj= json_decode($response , true );
 echo "New Test <br>";
 echo  $obj['message'];
 echo "<br>";
+echo  $obj['status'] . "<br>";
         //var_dump($obj);
     }
 
