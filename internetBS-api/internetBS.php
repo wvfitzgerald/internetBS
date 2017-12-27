@@ -153,50 +153,50 @@ require_once 'internetBS-settings.php';
 
 <?php
 
-$data = array (
-    'ApiKey' =>  get_option('internet_bs_api_key'),
-    'Password' =>  get_option('internet_bs_password'),
-    'domain' => $_POST['internetbs_domain'],
-    'ResponseFormat' => 'JSON',
-    'Registrant_FirstName' => $_POST['Registrant_FirstName'],
-    'Registrant_Lastname' =>  $_POST['Registrant_Lastname'],
-    'registrant_email' => $_POST['registrant_email'],
-    'registrant_phonenumber' => $_POST['registrant_phonenumber'],
-    'registrant_street' => $_POST['registrant_street'],
-    'registrant_city' => $_POST['registrant_city'],
-    'registrant_countrycode' => $_POST['registrant_countrycode'],
-    'registrant_postalcode' => $_POST['registrant_postalcode'],
-    'registrant_state' => $_POST['registrant_state'],
-    'technical_FirstName' => $_POST['Registrant_FirstName'],
-    'technical_Lastname' =>  $_POST['Registrant_Lastname'],
-    'technical_email' => $_POST['registrant_email'],
-    'technical_phonenumber' => $_POST['registrant_phonenumber'],
-    'technical_street' => $_POST['registrant_street'],
-    'technical_city' => $_POST['registrant_city'],
-    'technical_countrycode' => $_POST['registrant_countrycode'],
-    'technical_postalcode' => $_POST['registrant_postalcode'],
-    'technical_state' => $_POST['registrant_state'],
-    'billing_FirstName' => $_POST['Registrant_FirstName'],
-    'billing_Lastname' =>  $_POST['Registrant_Lastname'],
-    'billing_email' => $_POST['registrant_email'],
-    'billing_phonenumber' => $_POST['registrant_phonenumber'],
-    'billing_street' => $_POST['registrant_street'],
-    'billing_city' => $_POST['registrant_city'],
-    'billing_countrycode' => $_POST['registrant_countrycode'],
-    'billing_postalcode' => $_POST['registrant_postalcode'],
-    'billing_state' => $_POST['registrant_state'],
-    'admin_FirstName' => $_POST['Registrant_FirstName'],
-    'admin_Lastname' =>  $_POST['Registrant_Lastname'],
-    'admin_email' => $_POST['registrant_email'],
-    'admin_phonenumber' => $_POST['registrant_phonenumber'],
-    'admin_street' => $_POST['registrant_street'],
-    'admin_city' => $_POST['registrant_city'],
-    'admin_countrycode' => $_POST['registrant_countrycode'],
-    'admin_postalcode' => $_POST['registrant_postalcode'],
-    'admin_state' => $_POST['registrant_state'],
-);
+//$data = array (
+//    'ApiKey' =>  get_option('internet_bs_api_key'),
+//    'Password' =>  get_option('internet_bs_password'),
+//    'domain' => $_POST['internetbs_domain'],
+//    'ResponseFormat' => 'JSON',
+//    'Registrant_FirstName' => $_POST['Registrant_FirstName'],
+//    'Registrant_Lastname' =>  $_POST['Registrant_Lastname'],
+//    'registrant_email' => $_POST['registrant_email'],
+//    'registrant_phonenumber' => $_POST['registrant_phonenumber'],
+//    'registrant_street' => $_POST['registrant_street'],
+//    'registrant_city' => $_POST['registrant_city'],
+//    'registrant_countrycode' => $_POST['registrant_countrycode'],
+//    'registrant_postalcode' => $_POST['registrant_postalcode'],
+//    'registrant_state' => $_POST['registrant_state'],
+//    'technical_FirstName' => $_POST['Registrant_FirstName'],
+//    'technical_Lastname' =>  $_POST['Registrant_Lastname'],
+//    'technical_email' => $_POST['registrant_email'],
+//    'technical_phonenumber' => $_POST['registrant_phonenumber'],
+//    'technical_street' => $_POST['registrant_street'],
+//    'technical_city' => $_POST['registrant_city'],
+//    'technical_countrycode' => $_POST['registrant_countrycode'],
+//    'technical_postalcode' => $_POST['registrant_postalcode'],
+//    'technical_state' => $_POST['registrant_state'],
+//    'billing_FirstName' => $_POST['Registrant_FirstName'],
+//    'billing_Lastname' =>  $_POST['Registrant_Lastname'],
+//    'billing_email' => $_POST['registrant_email'],
+//    'billing_phonenumber' => $_POST['registrant_phonenumber'],
+//    'billing_street' => $_POST['registrant_street'],
+//    'billing_city' => $_POST['registrant_city'],
+//    'billing_countrycode' => $_POST['registrant_countrycode'],
+//    'billing_postalcode' => $_POST['registrant_postalcode'],
+//    'billing_state' => $_POST['registrant_state'],
+//    'admin_FirstName' => $_POST['Registrant_FirstName'],
+//    'admin_Lastname' =>  $_POST['Registrant_Lastname'],
+//    'admin_email' => $_POST['registrant_email'],
+//    'admin_phonenumber' => $_POST['registrant_phonenumber'],
+//    'admin_street' => $_POST['registrant_street'],
+//    'admin_city' => $_POST['registrant_city'],
+//    'admin_countrycode' => $_POST['registrant_countrycode'],
+//    'admin_postalcode' => $_POST['registrant_postalcode'],
+//    'admin_state' => $_POST['registrant_state'],
+//);
 
-
+require_once  "param-array.php";
 echo "Tst <br>";
 print_r($data);
 echo "<br>";
@@ -224,10 +224,11 @@ if ($err) {
 echo "<br>";
 $obj= json_decode($response , true );
 echo "New Test <br>";
-echo  $obj['message'];
+echo  $obj["product"][0]["message"];
 echo "<br>";
-echo  $obj['status'] . "<br>";
-        //var_dump($obj);
+echo  $obj["status"] . "<br>";
+echo "VAR Dump <br>";
+        print_r($obj);
     }
 
 
