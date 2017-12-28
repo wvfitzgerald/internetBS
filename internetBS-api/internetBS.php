@@ -90,23 +90,23 @@ require_once 'internetBS-settings.php';
             <li><a href="#tabs-3">Update A Domain</a></li>
         </ul>
         <div id="tabs-1">
-            <form method="post" action="#tabs-1">
-                <div class="form-table">
-                    <span>Enter A Domain Name</span>
-                    <input type="text" name="internetbs_domain"
-                           value="<?php echo isset($_POST['internetbs_domain']) ? $_POST['internetbs_domain'] : '' ?>"/>
+            <div class="wrap">
+                <?php require_once "forms/domain-check-form.php"; ?>
+            </div>
 
-                </div>
-                <?php submit_button('Check The Domain'); ?>
-
-            </form>
         </div>
         <div id="tabs-2">
 
             <div class="wrap">
              <?php require_once "forms/domain-registeration-form.php"; ?>
             </div>
+        </div>
 
+        <div id="tabs-3">
+            <div class="wrap">
+                <?php require_once "forms/domain-update-form.php"; ?>
+            </div>
+        </div>
 <?php
 
 //$data = array (
