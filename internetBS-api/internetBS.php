@@ -102,53 +102,9 @@ require_once 'internetBS-settings.php';
             </form>
         </div>
         <div id="tabs-2">
+
             <div class="wrap">
-
-
-                <form method="post" action="#tabs-2">
-                    <div class="form-table">
-                        Domain name:<br>
-                        <input type="text" name="internetbs_domain"
-                               value="<?php echo isset($_POST['internetbs_domain']) ? $_POST['internetbs_domain'] : '' ?>"/><br>
-                        First name:<br>
-                        <input type="text" name="Registrant_FirstName"
-                               value="<?php echo isset($_POST['Registrant_FirstName']) ? $_POST['Registrant_FirstName'] : '' ?>"><br>
-                        Last name:<br>
-                        <input type="text" name="Registrant_Lastname"
-                               value="<?php echo isset($_POST['Registrant_Lastname']) ? $_POST['Registrant_Lastname'] : '' ?>">
-                        <br>
-                        Email:<br>
-                        <input type="text" name="registrant_email"
-                               value="<?php echo isset($_POST['registrant_email']) ? $_POST['registrant_email'] : '' ?>"><br>
-                        Phone Number:<br>
-                        <input type="text" name="registrant_phonenumber" placeholder="1.5455454545"
-                               value="<?php echo isset($_POST['registrant_phonenumber']) ? $_POST['registrant_phonenumber'] : '' ?>"><br>
-                        Street:<br>
-                        <input type="text" name="registrant_street"
-                               value="<?php echo isset($_POST['registrant_street']) ? $_POST['registrant_street'] : '' ?>"><br>
-                        City:<br>
-                        <input type="text"
-                               name="registrant_city" <?php echo isset($_POST['registrant_city']) ? $_POST['registrant_city'] : '' ?>
-                        "><br>
-
-
-                        State:<br>
-                        <input type="text"
-                               name="registrant_state" <?php echo isset($_POST['registrant_state']) ? $_POST['registrant_state'] : '' ?>
-                        "><br>
-                        Postal Code:<br>
-                        <input type="text"
-                               name="registrant_postalcode" <?php echo isset($_POST['registrant_postalcode']) ? $_POST['registrant_postalcode'] : '' ?>
-                        "><br>
-                        Country Code:<br>
-                        <input type="text"
-                               name="registrant_countrycode" <?php echo isset($_POST['registrant_countrycode']) ? $_POST['registrant_countrycode'] : '' ?>
-                        "><br>
-
-                    </div>
-                    <?php submit_button('Check The Domain'); ?>
-
-                </form>
+             <?php require_once "forms/domain-registeration-form.php"; ?>
             </div>
 
 <?php
@@ -198,7 +154,7 @@ require_once 'internetBS-settings.php';
 
 require_once  "param-array.php";
 echo "Tst <br>";
-print_r($data);
+//print_r($data);
 echo "<br>";
 echo "End Tst <br>";
 ?>
@@ -224,9 +180,9 @@ if ($err) {
 echo "<br>";
 $obj= json_decode($response , true );
 echo "New Test <br>";
-echo  $obj["product"][0]["message"];
+echo  $obj["product"][0]["message"] . " ,please try another domain.";
 echo "<br>";
-echo  $obj["status"] . "<br>";
+echo  $obj["product"][0]["status"] . "<br>";
 echo "VAR Dump <br>";
         print_r($obj);
     }

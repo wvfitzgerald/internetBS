@@ -7,10 +7,11 @@
 /**
  * custom option and settings
  */
-function internetBS_settings_init() {
+function internetBS_settings_init(){
     // register a new setting for "internetBS" page
-    register_setting( 'internetBS', 'internetBS_options' );
-
+    //register_setting( 'internetBS', 'internetBS_options' );
+    register_setting('internet-bs-plugin-settings-group' , 'internet_bs_api_key');
+    register_setting('internet-bs-plugin-settings-group' , 'internet_bs_password');
     // register a new section in the "internetBS" page
     add_settings_section(
         'internetBS_section_developers',
