@@ -43,3 +43,29 @@
     <?php submit_button('Check The Domain'); ?>
 
 </form>
+<?php
+require_once "param-array.php";
+echo "Tst <br>";
+//print_r($data);
+echo "<br>";
+echo "End Tst <br>";
+?>
+<?php
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL , "https://testapi.internet.bs/Domain/Create");
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl,CURLOPT_CUSTOMREQUEST ,  "POST");
+curl_setopt($curl, CURLOPT_POSTFIELDS, $data );
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_exec($curl);
+$response = curl_exec($curl);
+$err = curl_error($curl);
+var_dump($response);
+curl_close($curl);
+if ($err) {
+    echo "cURL Error #:" . $err;
+} else {
+    echo $response;
+    echo "<br>";
+}
+

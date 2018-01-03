@@ -78,8 +78,7 @@ require_once 'internetBS-settings.php';
         jQuery( function() {
             jQuery( "#tabs" ).tabs();
         } );
-    </script>";
-    ?>
+    </script>
     <div class="wrap">
         <h1>InternetBS Domains</h1>
     </div>
@@ -98,7 +97,7 @@ require_once 'internetBS-settings.php';
         <div id="tabs-2">
 
             <div class="wrap">
-             <?php require_once "forms/domain-registeration-form.php"; ?>
+             <?php require_once "forms/domain-registration-form.php"; ?>
             </div>
         </div>
 
@@ -151,40 +150,40 @@ require_once 'internetBS-settings.php';
 //    'admin_postalcode' => $_POST['registrant_postalcode'],
 //    'admin_state' => $_POST['registrant_state'],
 //);
-
-require_once  "param-array.php";
-echo "Tst <br>";
-//print_r($data);
-echo "<br>";
-echo "End Tst <br>";
-?>
+//
+//require_once  "param-array.php";
+//echo "Tst <br>";
+////print_r($data);
+//echo "<br>";
+//echo "End Tst <br>";
+//?>
 <?php
-$curl = curl_init();
-curl_setopt($curl, CURLOPT_URL , "https://testapi.internet.bs/Domain/Create");
-curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl,CURLOPT_CUSTOMREQUEST ,  "POST");
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data );
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_exec($curl);
-$response = curl_exec($curl);
-$err = curl_error($curl);
-var_dump($response);
-curl_close($curl);
-if ($err) {
-    echo "cURL Error #:" . $err;
-} else {
-     echo $response;
-    echo "<br>";
-}
-//$jason = json_decode($response, true);
-echo "<br>";
-$obj= json_decode($response , true );
-echo "New Test <br>";
-echo  $obj["product"][0]["message"] . " ,please try another domain.";
-echo "<br>";
-echo  $obj["product"][0]["status"] . "<br>";
-echo "VAR Dump <br>";
-        print_r($obj);
+//$curl = curl_init();
+//curl_setopt($curl, CURLOPT_URL , "https://testapi.internet.bs/Domain/Create");
+//curl_setopt($curl, CURLOPT_POST, true);
+//curl_setopt($curl,CURLOPT_CUSTOMREQUEST ,  "POST");
+//curl_setopt($curl, CURLOPT_POSTFIELDS, $data );
+//curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+//curl_exec($curl);
+//$response = curl_exec($curl);
+//$err = curl_error($curl);
+//var_dump($response);
+//curl_close($curl);
+//if ($err) {
+//    echo "cURL Error #:" . $err;
+//} else {
+//     echo $response;
+//    echo "<br>";
+//}
+////$jason = json_decode($response, true);
+//echo "<br>";
+//$obj= json_decode($response , true );
+//echo "New Test <br>";
+//echo  $obj["product"][0]["message"] . " ,please try another domain.";
+//echo "<br>";
+//echo  $obj["product"][0]["status"] . "<br>";
+//echo "VAR Dump <br>";
+//        print_r($obj);
     }
 
 
