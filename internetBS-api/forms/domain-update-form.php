@@ -12,7 +12,7 @@
     <div class="form-table">
         Domain To Be Updated:<br>
         <input type="text" name="internetbs_domain"
-               value="<?php echo isset($_POST['internetbs_domain']) ? $_POST['internetbs_domain'] : '' ?>"/>
+               value="<?php echo isset($_POST['internetbs_domain']) ? $_POST['internetbs_domain'] : '' ?>"required/>
         <br>
         What would you like to update?
         <br>
@@ -24,6 +24,7 @@
             <option name="registrant_email" value="registrant_email">Email Address</option>
             <option name="registrant_phonenumber" value="registrant_phonenumber">Phone Number</option>
             <option name="registrant_street" value="registrant_address">Address</option>
+            <option name="Ns_list" value="Ns_list">Name Servers</option>
 
             </optgroup>
         </select>
@@ -40,7 +41,7 @@
 <!--               value="--><?php //echo isset($_POST[ $selectOption ]) ? $_POST[$selectOption] : '' ?><!--"><br>-->
             First name:<br>
             <input type="text" name="Registrant_FirstName"
-                   value="<?php echo isset($_POST['Registrant_FirstName']) ? $_POST['Registrant_FirstName'] : '' ?>"required><br>
+                   value="<?php echo isset($_POST['Registrant_FirstName']) ? $_POST['Registrant_FirstName'] : '' ?>"><br>
         Last name:<br>
         <input type="text" name="Registrant_Lastname"
                value="<?php echo isset($_POST['Registrant_Lastname']) ? $_POST['Registrant_Lastname'] : '' ?>">
@@ -57,26 +58,26 @@
                value="<?php echo isset($_POST['registrant_street']) ? $_POST['registrant_street'] : '' ?>"><br>
         City:<br>
         <input type="text"
-               name="registrant_city" <?php echo isset($_POST['registrant_city']) ? $_POST['registrant_city'] : '' ?>
+               name="registrant_city" value="<?php echo isset($_POST['registrant_city']) ? $_POST['registrant_city'] : '' ?>"
         "><br>
 
 
         State:<br>
         <input type="text"
-               name="registrant_state" <?php echo isset($_POST['registrant_state']) ? $_POST['registrant_state'] : '' ?>
+               name="registrant_state" value="<?php echo isset($_POST['registrant_state']) ? $_POST['registrant_state'] : '' ?>"
         "><br>
         Postal Code:<br>
         <input type="text"
-               name="registrant_postalcode" <?php echo isset($_POST['registrant_postalcode']) ? $_POST['registrant_postalcode'] : '' ?>
+               name="registrant_postalcode" value="<?php echo isset($_POST['registrant_postalcode']) ? $_POST['registrant_postalcode'] : '' ?>"
         "><br>
         Country Code:<br>
         <input type="text"
-               name="registrant_countrycode" <?php echo isset($_POST['registrant_countrycode']) ? $_POST['registrant_countrycode'] : '' ?>
+               name="registrant_countrycode" value="<?php echo isset($_POST['registrant_countrycode']) ? $_POST['registrant_countrycode'] : '' ?>"
         "><br>
         </div>
             Name Servers:<br>
-            <input type="text" placeholder="ns1.example.com 192.5.4.3, ns2.example.com 201.9.21.72"
-                   name="Ns_list" <?php echo isset($_POST['Ns_list']) ? $_POST['Ns_list'] : '' ?>
+            <input type="text" placeholder="ns1.example.com 192.5.4.3, ns2.example.com 201.9.21.72" size="55"
+                   name="Ns_list" "<?php echo isset($_POST['Ns_list']) ? $_POST['Ns_list'] : '' ?>"
             "><br>
 
     </div>
