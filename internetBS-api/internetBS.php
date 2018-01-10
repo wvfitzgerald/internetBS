@@ -13,55 +13,6 @@ Domain Path: /languages
 require_once 'internetBS-settings.php';
 /*---------Our admin settings page---------*/
 
-
-    add_action('admin_menu', 'internet_bs_plugin_create_menu');
-    function internet_bs_plugin_create_menu()
-    {
-
-        //create our settings menu and our top-level menu
-        add_menu_page('InternetBS', 'InternetBS', 'manage_options', 'internetbs-domains', 'internet_bs_domain_page');
-        add_options_page('InternetBS Settings', 'InternetBS', 'manage_options', 'internetbs-settings', 'internet_bs_plugin_settings_page');
-
-    }
-
-    function register_internet_bs_plugin_settings()
-    {
-        //register our settings
-        register_setting('internet-bs-plugin-settings-group' , 'internet_bs_api_key');
-        register_setting('internet-bs-plugin-settings-group' , 'internet_bs_password');
-    }
-
-    function internet_bs_plugin_settings_page()
-    {
-        ?>
-        <div class="wrap">
-
-            <h1>InternetBS settings</h1>
-
-            <form method="post" action="options.php">
-                <?php settings_fields('internet-bs-plugin-settings-group'); ?>
-                <?php do_settings_sections('internet-bs-plugin-settings-group'); ?>
-                <table class="form-table">
-                    <tr valign="top">
-                        <th scope="row">API Key</th>
-                        <td><input type="text" name="internet_bs_api_key"
-                                   value="<?php echo esc_attr(get_option('internet_bs_api_key')); ?>"/></td>
-                    </tr>
-
-                    <tr valign="top">
-                        <th scope="row">Password</th>
-                        <td><input type="text" name="internet_bs_password"
-                                   value="<?php echo esc_attr(get_option('internet_bs_password')); ?>"/></td>
-                    </tr>
-
-                </table>
-
-                <?php submit_button(); ?>
-
-            </form>
-        </div>
-    <?php }
-
     /*------End settings page-------*/
 
     /*------Begin domain check-----*/

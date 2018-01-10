@@ -34,7 +34,7 @@
         <input type="text"
                name="registrant_postalcode" <?php echo isset($_POST['registrant_postalcode']) ? $_POST['registrant_postalcode'] : '' ?>
         "><br>
-        Country Code:<br>
+        Country:<br>
         <input type="text"
                name="registrant_countrycode" <?php echo isset($_POST['registrant_countrycode']) ? $_POST['registrant_countrycode'] : '' ?>
         "><br>
@@ -44,28 +44,70 @@
 
 </form>
 <?php
-require_once "param-array.php";
-echo "Tst <br>";
-//print_r($data);
-echo "<br>";
-echo "End Tst <br>";
-?>
-<?php
+
+
+
 $curl = curl_init();
-curl_setopt($curl, CURLOPT_URL , "https://testapi.internet.bs/Domain/Create");
-curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl,CURLOPT_CUSTOMREQUEST ,  "POST");
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data );
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_exec($curl);
+
+curl_setopt_array($curl, array(
+    CURLOPT_URL => "https://testapi.internet.bs/Domain/Create",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "POST",
+    CURLOPT_POSTFIELDS => array (
+        'ApiKey' =>  get_option('internet_api_key'),
+        'Password' => get_option('internet_pass'),
+        'domain' => $_POST['internetbs_domain'],
+        'ResponseFormat' => 'JSON',
+        'Registrant_FirstName' => $_POST['Registrant_FirstName'],
+        'Registrant_Lastname' =>  $_POST['Registrant_Lastname'],
+        'registrant_email' => $_POST['registrant_email'],
+        'registrant_phonenumber' => $_POST['registrant_phonenumber'],
+        'registrant_street' => $_POST['registrant_street'],
+        'registrant_city' => $_POST['registrant_city'],
+        'registrant_countrycode' => $_POST['registrant_countrycode'],
+        'registrant_postalcode' => $_POST['registrant_postalcode'],
+        'registrant_state' => $_POST['registrant_state'],
+        'technical_FirstName' => $_POST['Registrant_FirstName'],
+        'technical_Lastname' =>  $_POST['Registrant_Lastname'],
+        'technical_email' => $_POST['registrant_email'],
+        'technical_phonenumber' => $_POST['registrant_phonenumber'],
+        'technical_street' => $_POST['registrant_street'],
+        'technical_city' => $_POST['registrant_city'],
+        'technical_countrycode' => $_POST['registrant_countrycode'],
+        'technical_postalcode' => $_POST['registrant_postalcode'],
+        'technical_state' => $_POST['registrant_state'],
+        'billing_FirstName' => $_POST['Registrant_FirstName'],
+        'billing_Lastname' =>  $_POST['Registrant_Lastname'],
+        'billing_email' => $_POST['registrant_email'],
+        'billing_phonenumber' => $_POST['registrant_phonenumber'],
+        'billing_street' => $_POST['registrant_street'],
+        'billing_city' => $_POST['registrant_city'],
+        'billing_countrycode' => $_POST['registrant_countrycode'],
+        'billing_postalcode' => $_POST['registrant_postalcode'],
+        'billing_state' => $_POST['registrant_state'],
+        'admin_FirstName' => $_POST['Registrant_FirstName'],
+        'admin_Lastname' =>  $_POST['Registrant_Lastname'],
+        'admin_email' => $_POST['registrant_email'],
+        'admin_phonenumber' => $_POST['registrant_phonenumber'],
+        'admin_street' => $_POST['registrant_street'],
+        'admin_city' => $_POST['registrant_city'],
+        'admin_countrycode' => $_POST['registrant_countrycode'],
+        'admin_postalcode' => $_POST['registrant_postalcode'],
+        'admin_state' => $_POST['registrant_state'],
+    ),
+));
+
 $response = curl_exec($curl);
 $err = curl_error($curl);
-var_dump($response);
+
 curl_close($curl);
+
 if ($err) {
     echo "cURL Error #:" . $err;
 } else {
     echo $response;
-    echo "<br>";
 }
-

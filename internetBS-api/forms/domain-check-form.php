@@ -10,18 +10,24 @@
 </form>
 
 <?php
-$data = array (
-    'ApiKey' => "testapi", // get_option('internet_bs_api_key'),
-    'Password' =>  "testpass" ,//get_option('internet_bs_password'),
-    'domain' => $_POST['internetbs_domain'],
-    'ResponseFormat' => 'JSON',
-);
+
 $curl = curl_init();
-curl_setopt($curl, CURLOPT_URL , "https://testapi.internet.bs/Domain/Check");
-curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl,CURLOPT_CUSTOMREQUEST ,  "POST");
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data );
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt_array($curl, array(
+    CURLOPT_URL => "https://testapi.internet.bs/Domain/Check",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "POST",
+    CURLOPT_POSTFIELDS => array (
+        'ApiKey' =>  get_option('internet_api_key'),
+        'Password' => get_option('internet_pass'),
+        'domain' => $_POST['internetbs_domain'],
+        'ResponseFormat' => 'JSON',
+    ),
+));
+
 curl_exec($curl);
 $response = curl_exec($curl);
 $err = curl_error($curl);
@@ -33,7 +39,7 @@ if ($err) {
     echo $response;
     echo "<br>";
 }
-
+var_dump($data);
 //$jason = json_decode($response, true);
 echo "<br>";
 $obj= json_decode($response , true );
