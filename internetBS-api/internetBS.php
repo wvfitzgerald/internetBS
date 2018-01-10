@@ -10,14 +10,8 @@ Author URI: http://wvfitzgerald.com
 Text Domain: internetbs
 Domain Path: /languages
 */
-require_once 'internetBS-settings.php';
 /*---------Our admin settings page---------*/
-
-    /*------End settings page-------*/
-
-    /*------Begin domain check-----*/
-
-
+require_once 'internetBS-settings.php';
 
     /*------Begin domain check-----*/
     function internet_bs_domain_page(){

@@ -3,40 +3,40 @@
     <div class="form-table">
         Domain name:<br>
         <input type="text" name="internetbs_domain"
-               value="<?php echo isset($_POST['internetbs_domain']) ? $_POST['internetbs_domain'] : '' ?>"/><br>
+               value="<?php echo isset($_POST['internetbs_domain']) ? $_POST['internetbs_domain'] : '' ?>"required/><br>
         First name:<br>
         <input type="text" name="Registrant_FirstName"
-               value="<?php echo isset($_POST['Registrant_FirstName']) ? $_POST['Registrant_FirstName'] : '' ?>"><br>
+               value="<?php echo isset($_POST['Registrant_FirstName']) ? $_POST['Registrant_FirstName'] : '' ?>"required><br>
         Last name:<br>
         <input type="text" name="Registrant_Lastname"
-               value="<?php echo isset($_POST['Registrant_Lastname']) ? $_POST['Registrant_Lastname'] : '' ?>">
+               value="<?php echo isset($_POST['Registrant_Lastname']) ? $_POST['Registrant_Lastname'] : '' ?>"required>
         <br>
         Email:<br>
-        <input type="text" name="registrant_email"
-               value="<?php echo isset($_POST['registrant_email']) ? $_POST['registrant_email'] : '' ?>"><br>
+        <input type="email" name="registrant_email"
+               value="<?php echo isset($_POST['registrant_email']) ? $_POST['registrant_email'] : '' ?>"required><br>
         Phone Number:<br>
-        <input type="text" name="registrant_phonenumber" placeholder="1.5455454545"
-               value="<?php echo isset($_POST['registrant_phonenumber']) ? $_POST['registrant_phonenumber'] : '' ?>"><br>
+        <input type="tel" name="registrant_phonenumber" placeholder="Format: 1.9999999999"
+               value="<?php echo isset($_POST['registrant_phonenumber']) ? $_POST['registrant_phonenumber'] : '' ?>"required><br>
         Street:<br>
         <input type="text" name="registrant_street"
-               value="<?php echo isset($_POST['registrant_street']) ? $_POST['registrant_street'] : '' ?>"><br>
+               value="<?php echo isset($_POST['registrant_street']) ? $_POST['registrant_street'] : '' ?>"required><br>
         City:<br>
         <input type="text"
-               name="registrant_city" <?php echo isset($_POST['registrant_city']) ? $_POST['registrant_city'] : '' ?>
+               name="registrant_city" value="<?php echo isset($_POST['registrant_city']) ? $_POST['registrant_city'] : '' ?>"required
         "><br>
 
 
-        State:<br>
-        <input type="text"
-               name="registrant_state" <?php echo isset($_POST['registrant_state']) ? $_POST['registrant_state'] : '' ?>
+        State/Provence:<br>
+        <input type="text" maxlength="2" size="2" placeholder="VA"
+               name="registrant_state" value="<?php echo isset($_POST['registrant_state']) ? $_POST['registrant_state'] : '' ?>"required
         "><br>
         Postal Code:<br>
-        <input type="text"
-               name="registrant_postalcode" <?php echo isset($_POST['registrant_postalcode']) ? $_POST['registrant_postalcode'] : '' ?>
+        <input type="number"
+               name="registrant_postalcode" value="<?php echo isset($_POST['registrant_postalcode']) ? $_POST['registrant_postalcode'] : '' ?>"required
         "><br>
-        Country:<br>
-        <input type="text"
-               name="registrant_countrycode" <?php echo isset($_POST['registrant_countrycode']) ? $_POST['registrant_countrycode'] : '' ?>
+        Country Code:<br>
+        <input type="text" maxlength="2" size="2" placeholder="US"
+               name="registrant_countrycode" value="<?php echo isset($_POST['registrant_countrycode']) ? $_POST['registrant_countrycode'] : '' ?>"required
         "><br>
 
     </div>
@@ -109,5 +109,15 @@ curl_close($curl);
 if ($err) {
     echo "cURL Error #:" . $err;
 } else {
-    echo $response;
+    echo "<br>";
+    $obj= json_decode($response , true );
+    //echo "New Test <br>";
+    echo  $obj["product"][0]["message"];
+   // echo "<br>";
+   // echo  $obj["product"][0]["message"] . "<br>";
+    //echo "VAR Dump <br>";
+    //print_r($obj);
+
+    //echo $response;
 }
+

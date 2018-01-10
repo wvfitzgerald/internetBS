@@ -36,8 +36,11 @@
 
         <div >
         <br>
-        <input type="text" name="<?php echo $selectOption; ?>"
-               value="<?php echo isset($_POST[ $selectOption ]) ? $_POST[$selectOption] : '' ?>"><br>
+<!--        <input type="text" name="--><?php //echo $selectOption; ?><!--"-->
+<!--               value="--><?php //echo isset($_POST[ $selectOption ]) ? $_POST[$selectOption] : '' ?><!--"><br>-->
+            First name:<br>
+            <input type="text" name="Registrant_FirstName"
+                   value="<?php echo isset($_POST['Registrant_FirstName']) ? $_POST['Registrant_FirstName'] : '' ?>"required><br>
         Last name:<br>
         <input type="text" name="Registrant_Lastname"
                value="<?php echo isset($_POST['Registrant_Lastname']) ? $_POST['Registrant_Lastname'] : '' ?>">
