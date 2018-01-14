@@ -1,9 +1,4 @@
 
-<!--<script type="text/javascript">-->
-<!--    jQuery( ".select-change" ).change(function() {-->
-<!--    jQuery( "#contact-info" ).removeClass( "hide-me" ).addClass( "show-me" );-->
-<!--    });-->
-<!--</script>-->
 <style type="text/css">
     .hide-me , .hide-address { display: none;}
     .show-me { display: block;}
@@ -32,14 +27,11 @@
         <?php
         $selectOption = $_POST['domain-update-options'];
         echo $selectOption . "<br>";
-        //var_dump($selectOption);
         ?>
 
-        <div >
+        <div>
         <br>
-<!--        <input type="text" name="--><?php //echo $selectOption; ?><!--"-->
-<!--               value="--><?php //echo isset($_POST[ $selectOption ]) ? $_POST[$selectOption] : '' ?><!--"><br>-->
-            First name:<br>
+          First name:<br>
             <input type="text" name="Registrant_FirstName"
                    value="<?php echo isset($_POST['Registrant_FirstName']) ? $_POST['Registrant_FirstName'] : '' ?>"><br>
         Last name:<br>
