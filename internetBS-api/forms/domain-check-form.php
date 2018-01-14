@@ -32,29 +32,13 @@ curl_setopt_array($curl, array(
 curl_exec($curl);
 $response = curl_exec($curl);
 $err = curl_error($curl);
-//var_dump($response);
 curl_close($curl);
-//if ($err) {
-//    echo "cURL Error #:" . $err;
-//}
-//else {
-//    echo $response;
-//    echo "<br>";
-//}
-//var_dump($data);
-////$jason = json_decode($response, true);
-//echo "<br>";
 $obj= json_decode($response , true );
-//echo "New Test <br>";
-//echo  $obj["status"] . " ,please try another domain.";
-//echo "<br>";
-//echo  $obj["product"][0]["status"] . "<br>";
-//echo "VAR Dump <br>";
-        //print_r($obj);
+
         if($obj["status"]== "UNAVAILABLE"){
            echo "Sorry, that domain is not available. Please try another";
         }elseif($obj["status"]== "FAILURE"){
             echo "Sorry, something went horribly wrong! Please try again";
         }else{
-            echo "Great, that doamin is available. Register it now? ";
+            echo "Great, that domain is available. Register it now? ";
         }
