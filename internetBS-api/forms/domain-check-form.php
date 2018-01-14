@@ -1,9 +1,8 @@
-
 <form method="post" action="#tabs-1">
     <div class="form-table">
         <span>Enter A Domain Name</span>
         <input type="text" name="internetbs_domain"
-               value="<?php echo isset($_POST['internetbs_domain']) ? $_POST['internetbs_domain'] : '' ?>"required/>
+               value="<?php echo isset($_POST['internetbs_domain']) ? $_POST['internetbs_domain'] : '' ?>" required/>
 
     </div>
     <?php submit_button('Check The Domain'); ?>
@@ -21,8 +20,8 @@ curl_setopt_array($curl, array(
     CURLOPT_TIMEOUT => 30,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "POST",
-    CURLOPT_POSTFIELDS => array (
-        'ApiKey' =>  get_option('internet_api_key'),
+    CURLOPT_POSTFIELDS => array(
+        'ApiKey' => get_option('internet_api_key'),
         'Password' => get_option('internet_pass'),
         'domain' => $_POST['internetbs_domain'],
         'ResponseFormat' => 'JSON',
@@ -32,7 +31,7 @@ curl_exec($curl);
 $response = curl_exec($curl);
 $err = curl_error($curl);
 curl_close($curl);
-$obj= json_decode($response , true );
+$obj = json_decode($response, true);
 if (isset($_POST['submit'])) {
     if ($obj["status"] == "UNAVAILABLE") {
         echo "Sorry, that domain is not available. Please try another";
