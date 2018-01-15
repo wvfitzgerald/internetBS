@@ -1,6 +1,6 @@
 
 <style type="text/css">
-    .hide-me , .hide-address { display: none;}
+    .hide-me { display: none;}
     .show-me { display: block;}
 </style>
 <form method="post" action="#tabs-3">
@@ -13,7 +13,7 @@
         <br>
         <select id="select-change" name="domain-update-options">
             <optgroup label="Contact Information">
-            <option name="contacts-updates" value="value1">Select</option>
+            <option name="contacts-updates" value="">Select</option>
             <option name="Registrant_FirstName" value="Registrant_FirstName">First Name</option>
             <option name="Registrant_Lastname" value="Registrant_Lastname">Last Name</option>
             <option name="registrant_email" value="registrant_email">Email Address</option>
@@ -31,20 +31,22 @@
 
         <div>
         <br>
+            <div id='Registrant-FirstName' class='hide-me'>
           First name:<br>
             <input type="text" name="Registrant_FirstName"
-                   value="<?php echo isset($_POST['Registrant_FirstName']) ? $_POST['Registrant_FirstName'] : '' ?>"><br>
-        Last name:<br>
+                   value="<?php echo isset($_POST['Registrant_FirstName']) ? $_POST['Registrant_FirstName'] : '' ?>"> </div><br>
+        <div id='Registrant-Lastname' class='hide-me'>
+            Last name:<br>
         <input type="text" name="Registrant_Lastname"
-               value="<?php echo isset($_POST['Registrant_Lastname']) ? $_POST['Registrant_Lastname'] : '' ?>">
+               value="<?php echo isset($_POST['Registrant_Lastname']) ? $_POST['Registrant_Lastname'] : '' ?>"> </div>
         <br>
         Email:<br>
-        <input type="text" name="registrant_email"
+        <input type="text" name="registrant_email" id='Registrant-email' class='hide-Registrant-email'
                value="<?php echo isset($_POST['registrant_email']) ? $_POST['registrant_email'] : '' ?>"><br>
         Phone Number:<br>
-        <input type="text" name="registrant_phonenumber" placeholder="1.5455454545"
+        <input type="tel" name="registrant_phonenumber" placeholder="1.5455454545" id='Registrant-phonenumber' class='hide-Registrant-phonenumber'
                value="<?php echo isset($_POST['registrant_phonenumber']) ? $_POST['registrant_phonenumber'] : '' ?>"><br>
-        <div id="contact-info" class="hide-address">
+        <div id="contact-info" class="hide-me">
             Street:<br>
         <input type="text" name="registrant_street"
                value="<?php echo isset($_POST['registrant_street']) ? $_POST['registrant_street'] : '' ?>"><br>
@@ -68,7 +70,7 @@
         "><br>
         </div>
             Name Servers:<br>
-            <input type="text" placeholder="ns1.example.com 192.5.4.3, ns2.example.com 201.9.21.72" size="55"
+            <input type="text" placeholder="ns1.example.com 192.5.4.3, ns2.example.com 201.9.21.72" size="55" id='Ns-list' class='hide-Ns-list'
                    name="Ns_list" "<?php echo isset($_POST['Ns_list']) ? $_POST['Ns_list'] : '' ?>"
             "><br>
 
@@ -76,10 +78,33 @@
     <?php submit_button('Check The Domain'); ?>
     <script type="text/javascript">
         jQuery( "#select-change" ).change(function() {
-            var test = jQuery("#select-change option:selected").val();
-            if(test === 'registrant_address'){
+            var showSection = jQuery("#select-change option:selected").val();
+            if(showSection === 'registrant_address'){
             jQuery( "#contact-info" ).removeClass( "hide-me" ).addClass( "show-me" );
+                 }else{
+                jQuery( "#contact-info" ).removeClass( "show-me" ).addClass( "hide-me" );
+//                jQuery( "#Registrant-FirstName" ).removeClass( "show-me" ).addClass( "hide-Registrant-FirstName" );
             }
+                 if(showSection === 'Registrant_FirstName'){
+                    jQuery("#Registrant-FirstName").removeClass("hide-me").addClass("show-me");
+                }else{
+                jQuery( "#Registrant-FirstName" ).removeClass( "show-me" ).addClass( "hide-me" );
+            }
+
+            if(showSection === 'Registrant_Lastname'){
+                jQuery("#Registrant-Lastname").removeClass("hide-me").addClass("show-me");
+            }else{
+                jQuery( "#Registrant-Lastname" ).removeClass( "show-me" ).addClass( "hide-me" );
+            }
+
+
+
+
+            //  }  Registrant-Lastname
+//            else{
+//                jQuery( "#contact-info" ).removeClass( "show-me" ).addClass( "hide-me" );
+//                jQuery( "#Registrant-FirstName" ).removeClass( "show-me" ).addClass( "hide-Registrant-FirstName" );
+//            }
             console.log(test);
         });
     </script>
