@@ -14,8 +14,8 @@
         <select id="select-change" name="domain-update-options">
             <optgroup label="Contact Information">
             <option name="contacts-updates" value="">Select</option>
-            <option name="Registrant_FirstName" value="Registrant_FirstName">First Name</option>
-            <option name="Registrant_Lastname" value="Registrant_Lastname">Last Name</option>
+            <option name="Registrant_FirstName" value="Registrant_FirstName">Name</option>
+<!--            <option name="Registrant_Lastname" value="Registrant_Lastname">Last Name</option>-->
             <option name="registrant_email" value="registrant_email">Email Address</option>
             <option name="registrant_phonenumber" value="registrant_phonenumber">Phone Number</option>
             <option name="registrant_street" value="registrant_address">Address</option>
@@ -23,7 +23,7 @@
 
             </optgroup>
         </select>
-        <br>
+
         <?php
         $selectOption = $_POST['domain-update-options'];
         echo $selectOption . "<br>";
@@ -34,18 +34,24 @@
             <div id='Registrant-FirstName' class='hide-me'>
           First name:<br>
             <input type="text" name="Registrant_FirstName"
-                   value="<?php echo isset($_POST['Registrant_FirstName']) ? $_POST['Registrant_FirstName'] : '' ?>"> </div><br>
-        <div id='Registrant-Lastname' class='hide-me'>
+                   value="<?php echo isset($_POST['Registrant_FirstName']) ? $_POST['Registrant_FirstName'] : '' ?>"><br>
+<!--            </div>-->
+<!--        <div id='Registrant-Lastname' class='hide-me'>-->
             Last name:<br>
         <input type="text" name="Registrant_Lastname"
-               value="<?php echo isset($_POST['Registrant_Lastname']) ? $_POST['Registrant_Lastname'] : '' ?>"> </div>
+               value="<?php echo isset($_POST['Registrant_Lastname']) ? $_POST['Registrant_Lastname'] : '' ?>">
         <br>
+        </div>
+            <div id='registrant-email' class='hide-me'>
         Email:<br>
-        <input type="text" name="registrant_email" id='Registrant-email' class='hide-Registrant-email'
+        <input type="text" name="registrant_email"
                value="<?php echo isset($_POST['registrant_email']) ? $_POST['registrant_email'] : '' ?>"><br>
+            </div>
+            <div id='Registrant-phonenumber' class='hide-me'>
         Phone Number:<br>
-        <input type="tel" name="registrant_phonenumber" placeholder="1.5455454545" id='Registrant-phonenumber' class='hide-Registrant-phonenumber'
+        <input type="tel" name="registrant_phonenumber" placeholder="1.5455454545"
                value="<?php echo isset($_POST['registrant_phonenumber']) ? $_POST['registrant_phonenumber'] : '' ?>"><br>
+            </div>
         <div id="contact-info" class="hide-me">
             Street:<br>
         <input type="text" name="registrant_street"
@@ -69,13 +75,15 @@
                name="registrant_countrycode" value="<?php echo isset($_POST['registrant_countrycode']) ? $_POST['registrant_countrycode'] : '' ?>"
         "><br>
         </div>
+            <div id='Ns-list' class='hide-me'>
             Name Servers:<br>
-            <input type="text" placeholder="ns1.example.com 192.5.4.3, ns2.example.com 201.9.21.72" size="55" id='Ns-list' class='hide-Ns-list'
+            <input type="text" placeholder="ns1.example.com 192.5.4.3, ns2.example.com 201.9.21.72" size="55"
                    name="Ns_list" "<?php echo isset($_POST['Ns_list']) ? $_POST['Ns_list'] : '' ?>"
             "><br>
+            </div>
 
     </div>
-    <?php submit_button('Check The Domain'); ?>
+    <?php submit_button('Update The Domain'); ?>
     <script type="text/javascript">
         jQuery( "#select-change" ).change(function() {
             var showSection = jQuery("#select-change option:selected").val();
@@ -97,10 +105,28 @@
                 jQuery( "#Registrant-Lastname" ).removeClass( "show-me" ).addClass( "hide-me" );
             }
 
+            if(showSection === 'registrant_email'){
+                jQuery("#registrant-email").removeClass("hide-me").addClass("show-me");
+            }else{
+                jQuery( "#registrant-email" ).removeClass( "show-me" ).addClass( "hide-me" );
+            }
+
+            if(showSection === 'registrant_phonenumber'){
+                jQuery("#Registrant-phonenumber").removeClass("hide-me").addClass("show-me");
+            }else{
+                jQuery( "#Registrant-phonenumber" ).removeClass( "show-me" ).addClass( "hide-me" );
+            }
+
+            if(showSection === 'Ns_list'){
+                jQuery("#Ns-list").removeClass("hide-me").addClass("show-me");
+            }else{
+                jQuery( "#Ns-list" ).removeClass( "show-me" ).addClass( "hide-me" );
+            }
 
 
 
-            //  }  Registrant-Lastname
+
+            //  }  registrant_phonenumber
 //            else{
 //                jQuery( "#contact-info" ).removeClass( "show-me" ).addClass( "hide-me" );
 //                jQuery( "#Registrant-FirstName" ).removeClass( "show-me" ).addClass( "hide-Registrant-FirstName" );
