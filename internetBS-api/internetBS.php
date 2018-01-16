@@ -12,6 +12,7 @@ Domain Path: /languages
 */
 /*---------Our admin settings page---------*/
 require_once 'internetBS-settings.php';
+require_once 'forms/partials/api-credentials.php';
 
 /*------Begin domain check-----*/
 function internet_bs_domain_page()

@@ -57,7 +57,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://testapi.internet.bs/Domain/Create",
+    CURLOPT_URL => $api_url ."/Domain/Create",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -65,8 +65,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "POST",
     CURLOPT_POSTFIELDS => array(
-        'ApiKey' => get_option('internet_api_key'),
-        'Password' => get_option('internet_pass'),
+        'ApiKey' => $api_key,
+        'Password' => $api_pass,
         'domain' => $_POST['internetbs_domain'],
         'ResponseFormat' => 'JSON',
         'Registrant_FirstName' => $_POST['Registrant_FirstName'],
@@ -120,4 +120,5 @@ if ($err) {
     $obj = json_decode($response, true);
     echo $obj["product"][0]["message"];
 }
+echo "<br> The REsponse <br>" . $response;
 

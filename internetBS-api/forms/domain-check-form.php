@@ -10,10 +10,19 @@
 </form>
 
 <?php
-
+$check_api_key = get_option('internet_api_key');
+if($check_api_key == ''){
+    $api_key = "testapi";
+    $api_pass = "testpass";
+    $api_url = "https://testapi.internet.bs";
+}else{
+    $api_key = $check_api_key;
+    $api_pass = get_option('internet_pass');
+    $api_url = "https://api.internet.bs";
+}
 $curl = curl_init();
 curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://testapi.internet.bs/Domain/Check",
+    CURLOPT_URL => $api_url ."/Domain/Check",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -21,8 +30,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "POST",
     CURLOPT_POSTFIELDS => array(
-        'ApiKey' => get_option('internet_api_key'),
-        'Password' => get_option('internet_pass'),
+        'ApiKey' => $api_key,
+        'Password' => $api_pass,
         'domain' => $_POST['internetbs_domain'],
         'ResponseFormat' => 'JSON',
     ),
