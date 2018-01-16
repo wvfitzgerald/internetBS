@@ -13,7 +13,7 @@
         <br>
         <select id="select-change" name="domain-update-options">
             <optgroup label="Contact Information">
-            <option name="contacts-updates" value="">Select</option>
+            <option name="contacts-updates" value="current_domain_info">Select</option>
             <option name="Registrant_FirstName" value="Registrant_FirstName">Name</option>
 <!--            <option name="Registrant_Lastname" value="Registrant_Lastname">Last Name</option>-->
             <option name="registrant_email" value="registrant_email">Email Address</option>
@@ -26,7 +26,7 @@
 
         <?php
         $selectOption = $_POST['domain-update-options'];
-        echo $selectOption . "<br>";
+        //echo $selectOption . "<br>";
         ?>
 
         <div>
@@ -139,58 +139,77 @@
 <?php
 $curl = curl_init();
 
-curl_setopt_array($curl, array(
-    CURLOPT_URL => $api_url . "/Domain/Update",
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => "",
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 30,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => "POST",
-    CURLOPT_POSTFIELDS => array (
-        'ApiKey' => $api_key,
-        'Password' => $api_pass,
-        'domain' => $_POST['internetbs_domain'],
-        'ResponseFormat' => 'JSON',
-        'Registrant_FirstName' => $_POST['Registrant_FirstName'],
-        'Registrant_Lastname' =>  $_POST['Registrant_Lastname'],
-        'registrant_email' => $_POST['registrant_email'],
-        'registrant_phonenumber' => $_POST['registrant_phonenumber'],
-        'registrant_street' => $_POST['registrant_street'],
-        'registrant_city' => $_POST['registrant_city'],
-        'registrant_countrycode' => $_POST['registrant_countrycode'],
-        'registrant_postalcode' => $_POST['registrant_postalcode'],
-        'registrant_state' => $_POST['registrant_state'],
-        'technical_FirstName' => $_POST['Registrant_FirstName'],
-        'technical_Lastname' =>  $_POST['Registrant_Lastname'],
-        'technical_email' => $_POST['registrant_email'],
-        'technical_phonenumber' => $_POST['registrant_phonenumber'],
-        'technical_street' => $_POST['registrant_street'],
-        'technical_city' => $_POST['registrant_city'],
-        'technical_countrycode' => $_POST['registrant_countrycode'],
-        'technical_postalcode' => $_POST['registrant_postalcode'],
-        'technical_state' => $_POST['registrant_state'],
-        'billing_FirstName' => $_POST['Registrant_FirstName'],
-        'billing_Lastname' =>  $_POST['Registrant_Lastname'],
-        'billing_email' => $_POST['registrant_email'],
-        'billing_phonenumber' => $_POST['registrant_phonenumber'],
-        'billing_street' => $_POST['registrant_street'],
-        'billing_city' => $_POST['registrant_city'],
-        'billing_countrycode' => $_POST['registrant_countrycode'],
-        'billing_postalcode' => $_POST['registrant_postalcode'],
-        'billing_state' => $_POST['registrant_state'],
-        'admin_FirstName' => $_POST['Registrant_FirstName'],
-        'admin_Lastname' =>  $_POST['Registrant_Lastname'],
-        'admin_email' => $_POST['registrant_email'],
-        'admin_phonenumber' => $_POST['registrant_phonenumber'],
-        'admin_street' => $_POST['registrant_street'],
-        'admin_city' => $_POST['registrant_city'],
-        'admin_countrycode' => $_POST['registrant_countrycode'],
-        'admin_postalcode' => $_POST['registrant_postalcode'],
-        'admin_state' => $_POST['registrant_state'],
-    ),
-));
+if($_POST['domain-update-options'] == "current_domain_info") {
+    /* Get Current Domain Info*/
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => $api_url . "/Domain/Info",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => array(
+            'ApiKey' => $api_key,
+            'Password' => $api_pass,
+            'domain' => $_POST['internetbs_domain'],
+        ),
+    ));
 
+    /*end*/
+}else{
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => $api_url . "/Domain/Update",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => array(
+            'ApiKey' => $api_key,
+            'Password' => $api_pass,
+            'domain' => $_POST['internetbs_domain'],
+            'ResponseFormat' => 'JSON',
+            'Registrant_FirstName' => $_POST['Registrant_FirstName'],
+            'Registrant_Lastname' => $_POST['Registrant_Lastname'],
+            'registrant_email' => $_POST['registrant_email'],
+            'registrant_phonenumber' => $_POST['registrant_phonenumber'],
+            'registrant_street' => $_POST['registrant_street'],
+            'registrant_city' => $_POST['registrant_city'],
+            'registrant_countrycode' => $_POST['registrant_countrycode'],
+            'registrant_postalcode' => $_POST['registrant_postalcode'],
+            'registrant_state' => $_POST['registrant_state'],
+            'technical_FirstName' => $_POST['Registrant_FirstName'],
+            'technical_Lastname' => $_POST['Registrant_Lastname'],
+            'technical_email' => $_POST['registrant_email'],
+            'technical_phonenumber' => $_POST['registrant_phonenumber'],
+            'technical_street' => $_POST['registrant_street'],
+            'technical_city' => $_POST['registrant_city'],
+            'technical_countrycode' => $_POST['registrant_countrycode'],
+            'technical_postalcode' => $_POST['registrant_postalcode'],
+            'technical_state' => $_POST['registrant_state'],
+            'billing_FirstName' => $_POST['Registrant_FirstName'],
+            'billing_Lastname' => $_POST['Registrant_Lastname'],
+            'billing_email' => $_POST['registrant_email'],
+            'billing_phonenumber' => $_POST['registrant_phonenumber'],
+            'billing_street' => $_POST['registrant_street'],
+            'billing_city' => $_POST['registrant_city'],
+            'billing_countrycode' => $_POST['registrant_countrycode'],
+            'billing_postalcode' => $_POST['registrant_postalcode'],
+            'billing_state' => $_POST['registrant_state'],
+            'admin_FirstName' => $_POST['Registrant_FirstName'],
+            'admin_Lastname' => $_POST['Registrant_Lastname'],
+            'admin_email' => $_POST['registrant_email'],
+            'admin_phonenumber' => $_POST['registrant_phonenumber'],
+            'admin_street' => $_POST['registrant_street'],
+            'admin_city' => $_POST['registrant_city'],
+            'admin_countrycode' => $_POST['registrant_countrycode'],
+            'admin_postalcode' => $_POST['registrant_postalcode'],
+            'admin_state' => $_POST['registrant_state'],
+        ),
+    ));
+}
 $response = curl_exec($curl);
 $err = curl_error($curl);
 
