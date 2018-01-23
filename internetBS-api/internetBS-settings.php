@@ -43,7 +43,7 @@ function internetbs_api_plugin_settings_page()
 
                 <tr valign="top">
                     <th scope="row">Password</th>
-                    <td><input type="text" name="internet_pass"
+                    <td><input type="password" name="internet_pass"
                                value="<?php echo esc_attr(get_option('internet_pass')); ?>"/></td>
                 </tr>
             </table>
