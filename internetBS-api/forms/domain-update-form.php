@@ -2,8 +2,11 @@
 <style type="text/css">
     .hide-me { display: none;}
     .show-me { display: block;}
+    .col-2 { width: 50%;display: inline-block; float: left;}
+    .col-1 { width: 100%;}
 </style>
-<form method="post" action="#tabs-3">
+
+    <form method="post" action="#tabs-3">
     <div class="form-table">
         Domain To Be Updated:<br>
         <input type="text" name="internetbs_domain"
@@ -136,6 +139,33 @@
     </script>
 </form>
 
+
+        <?php
+echo "<br> <br>";
+echo "<b>Domain</b>:  " . $obj["domain"] . "<br>";
+echo "<b>Expires:</b>  " . $obj["expirationdate"] . "<br>";
+echo "<b>Registrar Lock:</b>  " . $obj["registrarlock"] . "<br>";
+echo "<b>Whois Privacy: </b> " . $obj["privatewhois"] . "<br>";
+echo "<h4>Contact Information:</h4>";
+echo "<b>First Name: </b> " . $obj["contacts"]["registrant"]["firstname"] . "<br>";
+echo "<b>Last Name: </b> " . $obj["contacts"]["registrant"]["lastname"] . "<br>";
+echo "<b>Email: </b> " . $obj["contacts"]["registrant"]["email"] . "<br>";
+echo "<b>Phone Number:</b>  " . $obj["contacts"]["registrant"]["phonenumber"] . "<br>";
+echo "<b>Organization:</b>  " . $obj["contacts"]["registrant"]["organization"] . "<br>";
+echo "<b>City:  </b>" . $obj["contacts"]["registrant"]["city"] . "<br>";
+echo "<b>State/Provence:</b>  " . $obj["contacts"]["registrant"]["state"] . "<br>";
+echo "<b>Street: </b> " . $obj["contacts"]["registrant"]["street"] . "<br>";
+echo "<b>Street Two: </b> " . $obj["contacts"]["registrant"]["street2"] . "<br>";
+echo "<b>Street Three:</b>  " . $obj["contacts"]["registrant"]["street3"] . "<br>";
+echo "<b>Postal Code:</b>  " . $obj["contacts"]["registrant"]["postalcode"] . "<br>";
+echo "<b>Country:</b>  " . $obj["contacts"]["registrant"]["countrycode"] . "<br>";
+echo "<b>Nameserver One:</b>  " . $obj["nameserver"][0] . "<br>";
+echo "<b>Nameserver Two:</b>  " . $obj["nameserver"][1] . "<br>";
+echo "<b>Nameserver Three:</b>  " . $obj["nameserver"][2] . "<br>";
+echo "<b>Nameserver Four:</b>  " . $obj["nameserver"][3] . "<br>";
+?>
+
+
 <?php
 $curl = curl_init();
 
@@ -158,6 +188,18 @@ if($_POST['domain-update-options'] == "current_domain_info") {
 
     /*end*/
 }else{
+    require_once 'partials/update-array-values.php';
+    $required_values = array(
+        'ApiKey' => $api_key,
+        'Password' => $api_pass,
+        'domain' => $_POST['internetbs_domain'],
+        'ResponseFormat' => 'JSON',
+    );
+    if(! is_null($update_value)){
+        $new_values = $required_values + $update_value;
+         }else{
+        $new_values = $required_values;
+    }
     curl_setopt_array($curl, array(
         CURLOPT_URL => $api_url . "/Domain/Update",
         CURLOPT_RETURNTRANSFER => true,
@@ -166,48 +208,49 @@ if($_POST['domain-update-options'] == "current_domain_info") {
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => array(
-            'ApiKey' => $api_key,
-            'Password' => $api_pass,
-            'domain' => $_POST['internetbs_domain'],
-            'ResponseFormat' => 'JSON',
-            'Registrant_FirstName' => $_POST['Registrant_FirstName'],
-            'Registrant_Lastname' => $_POST['Registrant_Lastname'],
-            'registrant_email' => $_POST['registrant_email'],
-            'registrant_phonenumber' => $_POST['registrant_phonenumber'],
-            'registrant_street' => $_POST['registrant_street'],
-            'registrant_city' => $_POST['registrant_city'],
-            'registrant_countrycode' => $_POST['registrant_countrycode'],
-            'registrant_postalcode' => $_POST['registrant_postalcode'],
-            'registrant_state' => $_POST['registrant_state'],
-            'technical_FirstName' => $_POST['Registrant_FirstName'],
-            'technical_Lastname' => $_POST['Registrant_Lastname'],
-            'technical_email' => $_POST['registrant_email'],
-            'technical_phonenumber' => $_POST['registrant_phonenumber'],
-            'technical_street' => $_POST['registrant_street'],
-            'technical_city' => $_POST['registrant_city'],
-            'technical_countrycode' => $_POST['registrant_countrycode'],
-            'technical_postalcode' => $_POST['registrant_postalcode'],
-            'technical_state' => $_POST['registrant_state'],
-            'billing_FirstName' => $_POST['Registrant_FirstName'],
-            'billing_Lastname' => $_POST['Registrant_Lastname'],
-            'billing_email' => $_POST['registrant_email'],
-            'billing_phonenumber' => $_POST['registrant_phonenumber'],
-            'billing_street' => $_POST['registrant_street'],
-            'billing_city' => $_POST['registrant_city'],
-            'billing_countrycode' => $_POST['registrant_countrycode'],
-            'billing_postalcode' => $_POST['registrant_postalcode'],
-            'billing_state' => $_POST['registrant_state'],
-            'admin_FirstName' => $_POST['Registrant_FirstName'],
-            'admin_Lastname' => $_POST['Registrant_Lastname'],
-            'admin_email' => $_POST['registrant_email'],
-            'admin_phonenumber' => $_POST['registrant_phonenumber'],
-            'admin_street' => $_POST['registrant_street'],
-            'admin_city' => $_POST['registrant_city'],
-            'admin_countrycode' => $_POST['registrant_countrycode'],
-            'admin_postalcode' => $_POST['registrant_postalcode'],
-            'admin_state' => $_POST['registrant_state'],
-        ),
+        CURLOPT_POSTFIELDS => $new_values,
+//            array(
+//            'ApiKey' => $api_key,
+//            'Password' => $api_pass,
+//            'domain' => $_POST['internetbs_domain'],
+//            'ResponseFormat' => 'JSON',
+//            'Registrant_FirstName' => $_POST['Registrant_FirstName'],
+//            'Registrant_Lastname' => $_POST['Registrant_Lastname'],
+//            'registrant_email' => $_POST['registrant_email'],
+//            'registrant_phonenumber' => $_POST['registrant_phonenumber'],
+//            'registrant_street' => $_POST['registrant_street'],
+//            'registrant_city' => $_POST['registrant_city'],
+//            'registrant_countrycode' => $_POST['registrant_countrycode'],
+//            'registrant_postalcode' => $_POST['registrant_postalcode'],
+//            'registrant_state' => $_POST['registrant_state'],
+//            'technical_FirstName' => $_POST['Registrant_FirstName'],
+//            'technical_Lastname' => $_POST['Registrant_Lastname'],
+//            'technical_email' => $_POST['registrant_email'],
+//            'technical_phonenumber' => $_POST['registrant_phonenumber'],
+//            'technical_street' => $_POST['registrant_street'],
+//            'technical_city' => $_POST['registrant_city'],
+//            'technical_countrycode' => $_POST['registrant_countrycode'],
+//            'technical_postalcode' => $_POST['registrant_postalcode'],
+//            'technical_state' => $_POST['registrant_state'],
+//            'billing_FirstName' => $_POST['Registrant_FirstName'],
+//            'billing_Lastname' => $_POST['Registrant_Lastname'],
+//            'billing_email' => $_POST['registrant_email'],
+//            'billing_phonenumber' => $_POST['registrant_phonenumber'],
+//            'billing_street' => $_POST['registrant_street'],
+//            'billing_city' => $_POST['registrant_city'],
+//            'billing_countrycode' => $_POST['registrant_countrycode'],
+//            'billing_postalcode' => $_POST['registrant_postalcode'],
+//            'billing_state' => $_POST['registrant_state'],
+//            'admin_FirstName' => $_POST['Registrant_FirstName'],
+//            'admin_Lastname' => $_POST['Registrant_Lastname'],
+//            'admin_email' => $_POST['registrant_email'],
+//            'admin_phonenumber' => $_POST['registrant_phonenumber'],
+//            'admin_street' => $_POST['registrant_street'],
+//            'admin_city' => $_POST['registrant_city'],
+//            'admin_countrycode' => $_POST['registrant_countrycode'],
+//            'admin_postalcode' => $_POST['registrant_postalcode'],
+//            'admin_state' => $_POST['registrant_state'],
+//        ),
     ));
 }
 $response = curl_exec($curl);
