@@ -57,7 +57,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => $api_url ."/Domain/Create",
+    CURLOPT_URL => $api_url . "/Domain/Create",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -120,5 +120,5 @@ if ($err) {
     $obj = json_decode($response, true);
     echo $obj["product"][0]["message"];
 }
-echo "<br> The REsponse <br>" . $response;
+
 
