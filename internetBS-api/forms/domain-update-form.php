@@ -5,7 +5,7 @@
     .col-2 { width: 50%;display: inline-block; float: left;}
     .col-1 { width: 100%;}
 </style>
-
+<div style="width: 30%; float: left;" >
     <form method="post" action="#tabs-3">
     <div class="form-table">
         Domain To Be Updated:<br>
@@ -86,6 +86,7 @@
             </div>
 
     </div>
+    </div>
     <?php submit_button('Update The Domain'); ?>
     <script type="text/javascript">
         jQuery( "#select-change" ).change(function() {
@@ -138,33 +139,7 @@
         });
     </script>
 </form>
-
-
-        <?php
-echo "<br> <br>";
-echo "<b>Domain</b>:  " . $obj["domain"] . "<br>";
-echo "<b>Expires:</b>  " . $obj["expirationdate"] . "<br>";
-echo "<b>Registrar Lock:</b>  " . $obj["registrarlock"] . "<br>";
-echo "<b>Whois Privacy: </b> " . $obj["privatewhois"] . "<br>";
-echo "<h4>Contact Information:</h4>";
-echo "<b>First Name: </b> " . $obj["contacts"]["registrant"]["firstname"] . "<br>";
-echo "<b>Last Name: </b> " . $obj["contacts"]["registrant"]["lastname"] . "<br>";
-echo "<b>Email: </b> " . $obj["contacts"]["registrant"]["email"] . "<br>";
-echo "<b>Phone Number:</b>  " . $obj["contacts"]["registrant"]["phonenumber"] . "<br>";
-echo "<b>Organization:</b>  " . $obj["contacts"]["registrant"]["organization"] . "<br>";
-echo "<b>City:  </b>" . $obj["contacts"]["registrant"]["city"] . "<br>";
-echo "<b>State/Provence:</b>  " . $obj["contacts"]["registrant"]["state"] . "<br>";
-echo "<b>Street: </b> " . $obj["contacts"]["registrant"]["street"] . "<br>";
-echo "<b>Street Two: </b> " . $obj["contacts"]["registrant"]["street2"] . "<br>";
-echo "<b>Street Three:</b>  " . $obj["contacts"]["registrant"]["street3"] . "<br>";
-echo "<b>Postal Code:</b>  " . $obj["contacts"]["registrant"]["postalcode"] . "<br>";
-echo "<b>Country:</b>  " . $obj["contacts"]["registrant"]["countrycode"] . "<br>";
-echo "<b>Nameserver One:</b>  " . $obj["nameserver"][0] . "<br>";
-echo "<b>Nameserver Two:</b>  " . $obj["nameserver"][1] . "<br>";
-echo "<b>Nameserver Three:</b>  " . $obj["nameserver"][2] . "<br>";
-echo "<b>Nameserver Four:</b>  " . $obj["nameserver"][3] . "<br>";
-?>
-
+</div>
 
 <?php
 $curl = curl_init();
@@ -183,6 +158,7 @@ if($_POST['domain-update-options'] == "current_domain_info") {
             'ApiKey' => $api_key,
             'Password' => $api_pass,
             'domain' => $_POST['internetbs_domain'],
+            'ResponseFormat' => 'JSON',
         ),
     ));
 
@@ -257,9 +233,35 @@ $response = curl_exec($curl);
 $err = curl_error($curl);
 
 curl_close($curl);
-
+$obj = json_decode($response, true);
+echo "<div style =\"width: 70%; float: right;\">";
 if ($err) {
     echo "cURL Error #:" . $err;
 } else {
     echo $response;
+   // $obj = json_decode($response, true);
+    echo " <br><br>";
+    echo "<b>Domain</b>:  " . $obj["domain"] . "<br>";
+    echo "<b>Expires:</b>  " . $obj["expirationdate"] . "<br>";
+    echo "<b>Registrar Lock:</b>  " . $obj["registrarlock"] . "<br>";
+    echo "<b>Whois Privacy: </b> " . $obj["privatewhois"] . "<br>";
+    echo "<h4>Contact Information:</h4>";
+    echo "<b>First Name: </b> " . $obj["contacts"]["registrant"]["firstname"] . "<br>";
+    echo "<b>Last Name: </b> " . $obj["contacts"]["registrant"]["lastname"] . "<br>";
+    echo "<b>Email: </b> " . $obj["contacts"]["registrant"]["email"] . "<br>";
+    echo "<b>Phone Number:</b>  " . $obj["contacts"]["registrant"]["phonenumber"] . "<br>";
+    echo "<b>Organization:</b>  " . $obj["contacts"]["registrant"]["organization"] . "<br>";
+    echo "<b>City:  </b>" . $obj["contacts"]["registrant"]["city"] . "<br>";
+    echo "<b>State/Provence:</b>  " . $obj["contacts"]["registrant"]["state"] . "<br>";
+    echo "<b>Street: </b> " . $obj["contacts"]["registrant"]["street"] . "<br>";
+    echo "<b>Street Two: </b> " . $obj["contacts"]["registrant"]["street2"] . "<br>";
+    echo "<b>Street Three:</b>  " . $obj["contacts"]["registrant"]["street3"] . "<br>";
+    echo "<b>Postal Code:</b>  " . $obj["contacts"]["registrant"]["postalcode"] . "<br>";
+    echo "<b>Country:</b>  " . $obj["contacts"]["registrant"]["countrycode"] . "<br>";
+    echo "<b>Nameserver One:</b>  " . $obj["nameserver"][0] . "<br>";
+    echo "<b>Nameserver Two:</b>  " . $obj["nameserver"][1] . "<br>";
+    echo "<b>Nameserver Three:</b>  " . $obj["nameserver"][2] . "<br>";
+    echo "<b>Nameserver Four:</b>  " . $obj["nameserver"][3] . "<br>";
 }
+
+echo "</div>";
