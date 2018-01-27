@@ -7,15 +7,6 @@
         display: block;
     }
 
-    .col-2 {
-        width: 50%;
-        display: inline-block;
-        float: left;
-    }
-
-    .col-1 {
-        width: 100%;
-    }
 </style>
 <div style="width: 30%; float: left;">
     <form method="post" action="#tabs-3">
@@ -25,24 +16,22 @@
                    value="<?php echo isset($_POST['internetbs_domain']) ? $_POST['internetbs_domain'] : '' ?>"
                    required/>
             <br>
-            What would you like to update?
+            What would you like to do?
             <br>
             <select id="select-change" name="domain-update-options">
                 <optgroup label="Contact Information">
-                    <option name="contacts-updates" value="current_domain_info">Select</option>
-                    <option name="Registrant_FirstName" value="Registrant_FirstName">Name</option>
-                    <!--            <option name="Registrant_Lastname" value="Registrant_Lastname">Last Name</option>-->
-                    <option name="registrant_email" value="registrant_email">Email Address</option>
-                    <option name="registrant_phonenumber" value="registrant_phonenumber">Phone Number</option>
-                    <option name="registrant_street" value="registrant_address">Address</option>
-                    <option name="Ns_list" value="Ns_list">Name Servers</option>
+                    <option name="contacts-updates" value="current_domain_info">View Current Information</option>
+                    <option name="Registrant_FirstName" value="Registrant_FirstName">Update Name</option>
+                    <option name="registrant_email" value="registrant_email">Update Email Address</option>
+                    <option name="registrant_phonenumber" value="registrant_phonenumber">Update Phone Number</option>
+                    <option name="registrant_street" value="registrant_address">Update Address</option>
+                    <option name="Ns_list" value="Ns_list">Update Name Servers</option>
 
                 </optgroup>
             </select>
 
             <?php
             $selectOption = $_POST['domain-update-options'];
-            //echo $selectOption . "<br>";
             ?>
 
             <div>
@@ -51,8 +40,6 @@
                     First name:<br>
                     <input type="text" name="Registrant_FirstName"
                            value="<?php echo isset($_POST['Registrant_FirstName']) ? $_POST['Registrant_FirstName'] : '' ?>"><br>
-                    <!--            </div>-->
-                    <!--        <div id='Registrant-Lastname' class='hide-me'>-->
                     Last name:<br>
                     <input type="text" name="Registrant_Lastname"
                            value="<?php echo isset($_POST['Registrant_Lastname']) ? $_POST['Registrant_Lastname'] : '' ?>">
@@ -104,55 +91,7 @@
 
             </div>
         </div>
-        <?php submit_button('Update The Domain'); ?>
-        <script type="text/javascript">
-            jQuery("#select-change").change(function () {
-                var showSection = jQuery("#select-change option:selected").val();
-                if (showSection === 'registrant_address') {
-                    jQuery("#contact-info").removeClass("hide-me").addClass("show-me");
-                } else {
-                    jQuery("#contact-info").removeClass("show-me").addClass("hide-me");
-//                jQuery( "#Registrant-FirstName" ).removeClass( "show-me" ).addClass( "hide-Registrant-FirstName" );
-                }
-                if (showSection === 'Registrant_FirstName') {
-                    jQuery("#Registrant-FirstName").removeClass("hide-me").addClass("show-me");
-                } else {
-                    jQuery("#Registrant-FirstName").removeClass("show-me").addClass("hide-me");
-                }
-
-                if (showSection === 'Registrant_Lastname') {
-                    jQuery("#Registrant-Lastname").removeClass("hide-me").addClass("show-me");
-                } else {
-                    jQuery("#Registrant-Lastname").removeClass("show-me").addClass("hide-me");
-                }
-
-                if (showSection === 'registrant_email') {
-                    jQuery("#registrant-email").removeClass("hide-me").addClass("show-me");
-                } else {
-                    jQuery("#registrant-email").removeClass("show-me").addClass("hide-me");
-                }
-
-                if (showSection === 'registrant_phonenumber') {
-                    jQuery("#Registrant-phonenumber").removeClass("hide-me").addClass("show-me");
-                } else {
-                    jQuery("#Registrant-phonenumber").removeClass("show-me").addClass("hide-me");
-                }
-
-                if (showSection === 'Ns_list') {
-                    jQuery("#Ns-list").removeClass("hide-me").addClass("show-me");
-                } else {
-                    jQuery("#Ns-list").removeClass("show-me").addClass("hide-me");
-                }
-
-
-                //  }  registrant_phonenumber
-//            else{
-//                jQuery( "#contact-info" ).removeClass( "show-me" ).addClass( "hide-me" );
-//                jQuery( "#Registrant-FirstName" ).removeClass( "show-me" ).addClass( "hide-Registrant-FirstName" );
-//            }
-                console.log(test);
-            });
-        </script>
+        <?php submit_button('Update'); ?>
     </form>
 </div>
 
@@ -204,14 +143,13 @@ if ($_POST['domain-update-options'] == "current_domain_info") {
 }
 $response = curl_exec($curl);
 $err = curl_error($curl);
-
+//echo $response;
 curl_close($curl);
 $obj = json_decode($response, true);
 echo "<div style =\"width: 70%; float: right;\">";
 if ($err) {
     echo "cURL Error #:" . $err;
 } else {
-    echo " <br><br>";
     echo "<b>Domain</b>:  " . $obj["domain"] . "<br>";
     echo "<b>Expires:</b>  " . $obj["expirationdate"] . "<br>";
     echo "<b>Registrar Lock:</b>  " . $obj["registrarlock"] . "<br>";

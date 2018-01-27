@@ -1,5 +1,4 @@
 <?php
-
 /*
 Plugin Name: Internet BS API
 Plugin URI: http://wvfitzgerald.com
@@ -10,22 +9,22 @@ Author URI: http://wvfitzgerald.com
 Text Domain: internetbs
 Domain Path: /languages
 */
+/*------Let's Enqueue our scripts---------*/
+function internetbs_api_enqueue_script() {
+    wp_enqueue_script( 'jquery-ui-core', $src, 'jquery', $ver, $in_footer );
+    wp_enqueue_script( 'jquery-ui-tabs', $src, array('jquery', 'jquery-ui-core'), $ver, $in_footer );
+    wp_enqueue_script( 'internetbs_api_custom_script', plugin_dir_url( __FILE__ ) . 'forms/partials/scripts.js', array('jquery'), '1.0' , 'true' );
+    wp_enqueue_style('iternetbs-jquery-ui-css', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
+}
+add_action('admin_enqueue_scripts', 'internetbs_api_enqueue_script');
 /*---------Our admin settings page---------*/
 require_once 'internetBS-settings.php';
-require_once 'forms/partials/api-credentials.php';
+//require_once 'forms/partials/api-credentials.php';
 
 /*------Begin domain check-----*/
-function internet_bs_domain_page()
-{
-
+function internet_bs_domain_page(){
+    require_once 'forms/partials/api-credentials.php';
     ?>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        jQuery(function () {
-            jQuery("#tabs").tabs();
-        });
-    </script>
     <div class="wrap">
         <h1>InternetBS Domains</h1>
     </div>
@@ -55,6 +54,5 @@ function internet_bs_domain_page()
         </div>
     <?php
 }
-
 
 ?>
