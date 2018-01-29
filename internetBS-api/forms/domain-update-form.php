@@ -8,7 +8,7 @@
     }
 
 </style>
-<div style="width: 30%; float: left;">
+<div style="width: 40%; float: left;">
     <form method="post" action="#tabs-3">
         <div class="form-table">
             Domain To Be Updated:<br>
@@ -146,7 +146,7 @@ $err = curl_error($curl);
 //echo $response;
 curl_close($curl);
 $obj = json_decode($response, true);
-echo "<div style =\"width: 70%; float: right;\">";
+echo "<div style =\"width: 60%; float: right;\">";
 if ($err) {
     echo "cURL Error #:" . $err;
 } else {

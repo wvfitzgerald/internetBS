@@ -1,4 +1,4 @@
-//internetBS-api/forms/partials/scripts.js
+
 jQuery("#select-change").change(function () {
     var showSection = jQuery("#select-change option:selected").val();
     if (showSection === 'registrant_address') {
