@@ -1,6 +1,6 @@
 # README #
-
-
+*Still fine tuning 
+ 
 ### What is this repository for? ###
 
 * WordPress Internetbs.net api plugin 
