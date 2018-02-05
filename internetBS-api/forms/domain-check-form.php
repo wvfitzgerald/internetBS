@@ -38,6 +38,6 @@ if (isset($_POST['submit'])) {
     } elseif ($obj["status"] === "FAILURE") {
         echo "Sorry, something went horribly wrong! Please try again <br>";
     } else {
-        echo "Great, that domain is available. Register it now? ";
+        echo "<h4>Great, that domain is available, click Register A Domain above to get started </h4>";
     }
 }

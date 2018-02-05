@@ -26,8 +26,8 @@ function internetbs_api_plugin_settings_page()
 {
     ?>
     <div class="wrap">
-        <h1>Your Plugin Name</h1>
-
+        <h1>API Settings</h1>
+    <span> Leave blank to use the test server</span>
         <form method="post" action="options.php">
             <?php settings_fields('my-cool-plugin-settings-group'); ?>
             <?php do_settings_sections('my-cool-plugin-settings-group'); ?>
