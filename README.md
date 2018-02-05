@@ -12,7 +12,7 @@
 * You do not need an acount to use the test server 
 * You will need Docker installed
 * Clone the repo
-* After cloning run docker-compose up
+* After cloning cd into internetbs and run docker-compose up
 * Go to localhost in your browser and finish the WordPress installation steps. 
 * Go to plugins and activate Internet BS API
 * Skip the next step if you want to use the test server 
