@@ -1,10 +1,12 @@
 # README #
+
 *This is a work in progress and may not be ready for production sites.
  
 ### What is this repository for? ###
 
 * WordPress Internetbs.net api plugin which allows searching and buying domains from the WodrPress dashboard. 
 * Version 1.0.0
+* API docs https://internetbs.net/internet-bs-api.pdf
 
 ### How do I get set up? ###
 * Requires a InternetBS reseller account to use the live server, go to https://internetbs.net/ to create an account.
